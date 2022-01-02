@@ -23,8 +23,8 @@
 .user-summary {
   color: brown;
 } */
-.movie-container{
-  /* background-color:red; */
+/* .movie-container{
+  background-color:red;
   width:300px;
 }
 .movie-poster{
@@ -67,4 +67,50 @@
 
 .counter-container > button{
   font-size: 16px;
+} */
+
+/** @format */
+
+.App {
+  text-align: center;
+}
+
+.gallery {
+  text-align: justify;
+  display: flex;
+  /* gap: 1rem; */
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.movie-container {
+  width: 280px;
+}
+
+.movie-poster {
+  height: 500px;
+  width: 280px;
+  object-fit: cover;
+}
+
+.movie-specs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-title,
+.movie-rating,
+.movie-summary {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+/* .form{
+  
+} */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
