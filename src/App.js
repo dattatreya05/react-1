@@ -1,5 +1,12 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import { useState } from "react";
 import "./App.css";
 
@@ -141,77 +148,55 @@ export default function App() {
       </div>
     );
   }
-  // function Welcome({ name, poster, rating, summary }) {
-  //   return (
-  //     <div>
-  //       <h1 className="user-name">{name}</h1>
-  //       <img className="user-img" src={poster} alt={name}/>
-  //       <p className="user-rating"><b className="imdb-color">IMDB:</b> {rating}</p>
-  //       <p className="user-summary"><b className="summary-color">Summary:</b> {summary}</p>
-  //     </div>
-  //   )
-  // }
-
-  // function AddColor(){
-  //   const [color, setColor] = useState('purple');
-  //   const styles = { background: color };
-  //   // const [colorList, setColorList] = useState(["yellow", "pink", "teal"]);
-
-  //   // typing -> onChange -> content (event.target.value) -> setColor -> Inform react color is updated
-  //   return(
-  //     <div>
-  //       <input
-  //         value={color}
-  //         style={styles} onChange={(event) => { 
-  //         // console.log(event.target.value);  // for to get value in the console output we are writing this console.log()
-  //         setColor(event.target.value);
-  //       }}
-  //       placeholder="Enter a color" />
-  //       {/* <button onClick={() => setColorList([...colorList, color])}>Add Color</button>
-  //       {colorList.map((clr) =>
-  //       (<ColorBox color={clr}/> ))} */}
-        
-  //     </div>
-  //   )
-  // }
-
-
-  // function ColorBox({color}){
-  //   const styles = {
-  //     height : "25px",
-  //     width: "250px",
-  //     background: color,
-  //     marginTop:"10px"
-  //   }
-  //   return(
-  //     <div style = {styles}>
-
-  //     </div>
-  //   )
-  // }
-
   function Movie({name, poster, rating, summary}){
     // conditional styling
     const styles = {color: rating >= 8.5 ? "green" : "red"}
-    const [summaryDisplay, setsummaryDisplay] = useState(true);
-    const [summarystyles, setsummaryStyles] = useState({
-      display:"none"
-    });
+    // const [summaryDisplay, setsummaryDisplay] = useState(true);
+    // const [summarystyles, setsummaryStyles] = useState({
+    //   display:"none"
+    // });
+    const [show, setShow] = useState(true);
+    // conditional styling
+    const summaryStyles = {display: show ? "block" : "none"};
     
-    return <div className="movie-container">
+    return( 
+    <Card className="movie-container">
       <img className = "movie-poster" src={poster} alt={name}/>
-      <div className="movie-specs">
-        <h3 className="movie-name">{name}</h3>
-        <p style={styles} className="movie-rating">⭐ {rating}</p>
-      </div>
-      <Button onClick = {() => {
-        setsummaryStyles({display:summaryDisplay ? "block" : "none"});
-        setsummaryDisplay(summaryDisplay ? false : true);
-      }} variant="contained">Toggle Summary</Button>
-      <p className="movie-summary" style={summarystyles}>{summary}</p>
-      <Counter />
-    </div>
-  }
+      <CardContent>
+        <div className="movie-specs">
+          <h3 className="movie-name">{name} 
+            <IconButton color="primary" onClick = {() => setShow(!show)} aria-label="Toggle summary">
+              {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            </IconButton>{" "}
+          </h3>
+          <p style={styles} className="movie-rating">⭐ {rating}</p>
+        </div>
+
+        {/* This is done by me */}
+        {/* <Button onClick = {() => {
+          setsummaryStyles({display:summaryDisplay ? "block" : "none"});
+          setsummaryDisplay(summaryDisplay ? false : true);
+        }} variant="contained">Toggle Summary</Button>
+        <p className="movie-summary" style={summarystyles}>{summary}</p> */}
+
+        {/* It was done in class  */}
+        {/* onClick -> setShow -> Inform react that show is updated. */}
+        {/* show -> true -> setShow -> false -> hides */}
+        {/* show -> false -> setShow -> true -> display */}
+        
+        {/* <Button onClick = {() => setShow(!show)} variant="contained">Toggle summary</Button> */}
+        
+        {/* conditional styling */}
+        {/* <p style= {summaryStyles} className="movie-summary">{summary}</p> */}
+        
+        {/* conditional rendering - removed from the DOM itself*/}
+        {show ? <p className="movie-summary">{summary}</p> : ""}
+        <CardActions>
+          <Counter />
+        </CardActions>
+      </CardContent>
+    </Card>
+    )}
 
   function Counter() {
     const [like, setLike] = useState(0);
@@ -219,33 +204,22 @@ export default function App() {
 
     return(
       <div className="counter-container">
-        <Button onClick={() => setLike(like + 1)} variant="outlined"><span>👍</span>{like}</Button>
-        <Button onClick={() => setDisLike(disLike + 1)} variant="outlined"><span>👎</span>{disLike}</Button>
+        <IconButton onClick={() => setLike(like + 1)} color="primary" aria-label="like the movie">
+        <Badge badgeContent={like} color="primary">
+          <span>👍</span>
+        </Badge>
+        </IconButton>
+
+        <IconButton onClick={() => setDisLike(disLike + 1)} color="error" aria-label="dislike the movie">
+        <Badge badgeContent={disLike} color="error">
+          <span>👎</span>
+        </Badge>
+        </IconButton>
       </div>
     );
   }
 
-  // function Movies(){
-  //   const [name, setMovieName] = useState("Love Story")
-  //   const [nameList, setNameList] = useState(["Rangdhe", "A1 Express", "Bheeshma"]);
-  //   return(
 
-  //     <form action="#" className ="movies">
-  //       <input placeholder="movie-poster"/>
-  //       <div className="names">
-  //         <input  value={name}
-  //           onChange={(event) =>{setMovieName(event.target.value)}}
-  //           placeholder="movie-name" />
-  //           <button onClick={() =>{setMovieName(name)}}>Add movie</button>
-  //           {/* {nameList.map((nm) => (nm))} */}
-  //       </div>
-  //       <input placeholder="movie-rating" />
-  //       <input placeholder="movie-summary" />
-        
-        
-  //     </form>
-  //   )
-  // }
 
   
 

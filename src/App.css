@@ -26,6 +26,7 @@
 .movie-container{
   /* background-color:red; */
   width:240px;
+  height:min-content;
 }
 .movie-poster{
   width:240px;
@@ -67,7 +68,7 @@
 }
 
 .counter-container > button{
-  font-size: 16px;
+  font-size: 22px;
 }
 
 .add-movie-form{
@@ -79,8 +80,9 @@
   /* align-items:center; */
 }
 
-/* .add-movie-form > input, */
+.add-movie-form > input,
 .add-movie-form > Button
 {
   font-size: 18px;
 }
+
