@@ -1,24 +1,5 @@
-// function AddColor(){
-//   const [color, setColor] = useState('purple');
-//   const styles = { background: color };
-//   // const [colorList, setColorList] = useState(["yellow", "pink", "teal"]);
-//   // typing -> onChange -> content (event.target.value) -> setColor -> Inform react color is updated
-//   return(
-//     <div>
-//       <input
-//         value={color}
-//         style={styles} onChange={(event) => { 
-//         // console.log(event.target.value);  // for to get value in the console output we are writing this console.log()
-//         setColor(event.target.value);
-//       }}
-//       placeholder="Enter a color" />
-//       {/* <button onClick={() => setColorList([...colorList, color])}>Add Color</button>
-//       {colorList.map((clr) =>
-//       (<ColorBox color={clr}/> ))} */}
-//     </div>
-//   )
-// }
-function ColorBox({ color }) {
+
+ function ColorBox({ color }) {
   const styles = {
     height: "25px",
     width: "250px",
@@ -31,3 +12,26 @@ function ColorBox({ color }) {
     </div>
   );
 }
+
+const double = (n) => n*2;
+
+// 1. Named exports and imports upperOne
+
+// End of the file all exports are defining.
+export {ColorBox, double};
+
+
+// // 2. Defalut exports and imports - only one at a time
+// export default function ColorBox({ color }) {
+//   const styles = {
+//     height: "25px",
+//     width: "250px",
+//     background: color,
+//     marginTop: "10px"
+//   };
+//   return (
+//     <div style={styles}>
+
+//     </div>
+//   );
+// }

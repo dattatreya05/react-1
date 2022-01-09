@@ -1,14 +1,13 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import { useState } from "react";
+import { AddColor } from './AddColor';
 import "./App.css";
+import {double} from "./ColorBox.js"; // 1. Named exports and imports
+import { Movie } from './Movie';
+// import ColorBox from "./ColorBox.js"; // defalut exports and imports- only one at a time
+
+console.log(double(10))
 
 export default function App() {
     const INITIAL_MOVIES = [
@@ -135,8 +134,9 @@ export default function App() {
         
 
         <section className="movie-list">
-          {movieList.map((movie) => (
-            <Movie 
+          {movieList.map((movie, index) => (
+            <Movie
+            key= {index} 
             name={movie.name}
             poster={movie.poster}
             rating={movie.rating}
@@ -144,82 +144,8 @@ export default function App() {
             />
           ))}
         </section>
-        {/* <AddColor /> */}
+        <AddColor />
       </div>
     );
   }
-  function Movie({name, poster, rating, summary}){
-    // conditional styling
-    const styles = {color: rating >= 8.5 ? "green" : "red"}
-    // const [summaryDisplay, setsummaryDisplay] = useState(true);
-    // const [summarystyles, setsummaryStyles] = useState({
-    //   display:"none"
-    // });
-    const [show, setShow] = useState(true);
-    // conditional styling
-    const summaryStyles = {display: show ? "block" : "none"};
-    
-    return( 
-    <Card className="movie-container">
-      <img className = "movie-poster" src={poster} alt={name}/>
-      <CardContent>
-        <div className="movie-specs">
-          <h3 className="movie-name">{name} 
-            <IconButton color="primary" onClick = {() => setShow(!show)} aria-label="Toggle summary">
-              {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </IconButton>{" "}
-          </h3>
-          <p style={styles} className="movie-rating">⭐ {rating}</p>
-        </div>
-
-        {/* This is done by me */}
-        {/* <Button onClick = {() => {
-          setsummaryStyles({display:summaryDisplay ? "block" : "none"});
-          setsummaryDisplay(summaryDisplay ? false : true);
-        }} variant="contained">Toggle Summary</Button>
-        <p className="movie-summary" style={summarystyles}>{summary}</p> */}
-
-        {/* It was done in class  */}
-        {/* onClick -> setShow -> Inform react that show is updated. */}
-        {/* show -> true -> setShow -> false -> hides */}
-        {/* show -> false -> setShow -> true -> display */}
-        
-        {/* <Button onClick = {() => setShow(!show)} variant="contained">Toggle summary</Button> */}
-        
-        {/* conditional styling */}
-        {/* <p style= {summaryStyles} className="movie-summary">{summary}</p> */}
-        
-        {/* conditional rendering - removed from the DOM itself*/}
-        {show ? <p className="movie-summary">{summary}</p> : ""}
-        <CardActions>
-          <Counter />
-        </CardActions>
-      </CardContent>
-    </Card>
-    )}
-
-  function Counter() {
-    const [like, setLike] = useState(0);
-    const [disLike, setDisLike] = useState(0);
-
-    return(
-      <div className="counter-container">
-        <IconButton onClick={() => setLike(like + 1)} color="primary" aria-label="like the movie">
-        <Badge badgeContent={like} color="primary">
-          <span>👍</span>
-        </Badge>
-        </IconButton>
-
-        <IconButton onClick={() => setDisLike(disLike + 1)} color="error" aria-label="dislike the movie">
-        <Badge badgeContent={disLike} color="error">
-          <span>👎</span>
-        </Badge>
-        </IconButton>
-      </div>
-    );
-  }
-
-
-
-  
 
