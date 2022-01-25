@@ -131,6 +131,10 @@ export default function App() {
           <Route path="/films">
             <Redirect  to="/movies"/>
           </Route>
+          {/* <Route path="/movies/:id">
+            Movie details
+          </Route> */}
+
           <Route path="/movies">
             <div className="add-movie-form">
               <h3>Enter Movie Details</h3>
@@ -164,6 +168,7 @@ export default function App() {
                   poster={movie.poster}
                   rating={movie.rating}
                   summary={movie.summary}
+                  id={index}
                   />
                 ))}
               </section>
