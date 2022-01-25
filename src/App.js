@@ -11,6 +11,7 @@ import { Switch, Route, Link, Redirect } from "react-router-dom";
 console.log(double(10))
 
 export default function App() {
+
     const INITIAL_MOVIES = [
       {
         name:"Love Story", 
