@@ -35,3 +35,21 @@ export {ColorBox, double};
 //     </div>
 //   );
 // }
+
+
+// Doing the different pages in an app like home, about ..etc why
+// 1. Performance
+// 2. Organised
+// 3. Ease of access
+// 4. Analytics
+// 5. Share - URL - Most Important
+
+// SPA - Single Page Application
+
+// Router - Maintain SPA and behave MPA(Multi page application)
+// With conditional rendering
+// Syntax: import { BrowserRouter as Router } from "react-router-dom";
+// we can use BrowserRouter or HashRouter depending on requirement. 
+
+// 1. BrowserRouter - Modern browser - Added features
+// 2. HashRouter - Older browser (IE)

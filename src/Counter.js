@@ -1,6 +1,7 @@
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import { useState } from "react";
+// import { Counter } from './Counter.js';
 
 function Counter() {
   const [like, setLike] = useState(0);
@@ -22,3 +23,5 @@ function Counter() {
     </div>
   );
 }
+
+export {Counter}
