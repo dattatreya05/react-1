@@ -1,5 +1,5 @@
 import IconButton from '@mui/material/IconButton';
-// import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from '@mui/icons-material/Info';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Card from '@mui/material/Card';
@@ -7,9 +7,9 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import { useState } from "react";
 import { Counter } from './Counter';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-export function Movie({ name, poster, rating, summary, id }) {
+export function Movie({ name, poster, rating, summary, id, deleteButton }) {
   // conditional styling
   const styles = { color: rating >= 8.5 ? "green" : "red" };
   // const [summaryDisplay, setsummaryDisplay] = useState(true);
@@ -19,7 +19,7 @@ export function Movie({ name, poster, rating, summary, id }) {
   const [show, setShow] = useState(true);
   // conditional styling
   // const summaryStyles = { display: show ? "block" : "none" };
-  // const history = useHistory();
+  const history = useHistory();
   return (
     <Card className="movie-container">
       <img className="movie-poster" src={poster} alt={name} />
@@ -31,9 +31,9 @@ export function Movie({ name, poster, rating, summary, id }) {
             </IconButton>
 
             {/* history.push - changes the URL / alternative to Link */}
-            {/* <IconButton color="primary" onClick={() => history.push("/movies/" + id)} aria-label="Movie details">
+            <IconButton color="primary" onClick={() => history.push("/movies/" + id)} aria-label="Movie details">
               <InfoIcon />
-            </IconButton> */}
+            </IconButton>
           </h3>
           <p style={styles} className="movie-rating">⭐ {rating}</p>
         </div>
@@ -60,8 +60,9 @@ export function Movie({ name, poster, rating, summary, id }) {
 
       </CardContent>
       <CardActions>
-        <Counter />
+        <Counter /> {deleteButton}
       </CardActions>
     </Card>
   );
 }
+
