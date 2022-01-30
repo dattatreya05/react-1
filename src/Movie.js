@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Counter } from './Counter';
 import { useHistory } from 'react-router-dom';
 
-export function Movie({ name, poster, rating, summary, id, deleteButton }) {
+export function Movie({ name, poster, rating, summary, id, deleteButton, editButton }) {
   // conditional styling
   const styles = { color: rating >= 8.5 ? "green" : "red" };
   // const [summaryDisplay, setsummaryDisplay] = useState(true);

@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
-
+import Button from '@mui/material/Button';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useHistory } from 'react-router-dom';
 
 export function MovieDetails({ movieList }) {
   // const name= "The Avengers";
@@ -11,6 +13,8 @@ export function MovieDetails({ movieList }) {
   const { id } = useParams();
   const movie = movieList[id];
   console.log(movie);
+
+  const history = useHistory();
 
   return (
     <div>
@@ -29,6 +33,9 @@ export function MovieDetails({ movieList }) {
           <p className="movie-rating">⭐{movie.rating}</p>
         </div>
         <p>{movie.summary}</p>
+        <Button onClick={() => history.goBack()} variant="outlined" startIcon={<ArrowBackIosIcon />}>
+          Back
+        </Button>
       </div>
     </div>
   );
