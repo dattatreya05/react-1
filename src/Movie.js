@@ -60,7 +60,7 @@ export function Movie({ name, poster, rating, summary, id, deleteButton, editBut
 
       </CardContent>
       <CardActions>
-        <Counter /> {deleteButton}
+        <Counter /> {deleteButton} {editButton}
       </CardActions>
     </Card>
   );
