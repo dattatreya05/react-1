@@ -21,28 +21,28 @@ export default function App() {
         poster:"https://m.media-amazon.com/images/M/MV5BNDFmNDk3MWMtMDY0NS00ZGFmLTlkYTUtNmUwYTU4YzllNTNhXkEyXkFqcGdeQXVyNTgxODY5ODI@._V1_.jpg",
         rating:8.4,
         summary:"A Christian Zumba instructor falls in love with a starry-eyed upper caste Hindu girl. In their quest for happiness, however, they must first overcome a massive caste divide.",
-        trailer:"https://www.youtube.com/watch?v=1yH_eOxpkwo"
+        trailer:"https://www.youtube.com/embed/1yH_eOxpkwo"
       },
       {
         name:"Rangdhe", 
         poster:"https://m.media-amazon.com/images/M/MV5BMTUxYjk4OGYtNTg0My00MzA2LTg2MjYtYTNlOWU3YjY2MWU0XkEyXkFqcGdeQXVyNTgxODY5ODI@._V1_.jpg",
         rating:9.0,
         summary:"Arjun as a kid enjoys attention from his parents and everyone in the neighbourhood. As the colony he lives in doesn't have kids of his age, he wishes to have a girlfriend, when Anupama's Anu family moves in. Arjun's family members grew fond of Anu, which sows the seed of jealousy in him.",
-        trailer:"https://www.youtube.com/watch?v=z8gBG5d7aes"
+        trailer:"https://www.youtube.com/embed/z8gBG5d7aes"
       },
       {
         name:"A1 Express", 
         poster:"https://upload.wikimedia.org/wikipedia/en/thumb/0/00/A1_Express.jpg/220px-A1_Express.jpg",
         rating:8.3,
         summary:"A young man moves to a new town and falls in love with a hockey player. However, he soon finds himself opposing a corrupt politician's plans to take over the ground his girlfriend's team practices on.",
-        trailer:"https://www.youtube.com/watch?v=DBQUoFSebzU"
+        trailer:"https://www.youtube.com/embed/2Xs28oHr6xI"
       },
       {
         name:"Bheeshma", 
         poster:"https://upload.wikimedia.org/wikipedia/en/f/f5/Bheeshma_poster.jpg",
         rating:9.0,
         summary:"When Bheeshma gets involved with Chaitra, an employee of Bheeshma Organics, he develops an interest in organic farming. Trouble ensues when her company announces a new product that seems to be shady.",
-        trailer:"https://www.youtube.com/watch?v=8A9mJYprMl4"
+        trailer:"https://www.youtube.com/embed/8A9mJYprMl4"
       },
       {
         name: "RRR",
