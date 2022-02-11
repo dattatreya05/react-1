@@ -14,9 +14,14 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
-
+import {  createTheme, ThemeProvider } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 // console.log(double(10))
+
+// 1. Creating - createContext
+// 2. Publisher - provider - context.Provider
+// 3. Subscriber - useContext - useContext(context)
 
 export default function App() {
 
@@ -123,54 +128,67 @@ export default function App() {
     ];
     const [movieList, setMovieList] = useState(INITIAL_MOVIES);
 
+    const [mode, setMode] = useState("dark");
     const history = useHistory();
+    const themeCtx = createTheme({
+      palette: {
+        mode: 'dark',
+      },
+    });
+
     return (
-      <div className="App">
-        <AppBar position="static">
-          <Toolbar>
-            <Button color="inherit" onClick={() => history.push('/movies')}>Movies</Button>
-            <Button color="inherit" onClick={() => history.push('/color-game')}>Color game</Button>
-            <Button color="inherit" onClick={() => history.push('/')}>Home</Button>
-            <Button color="inherit" onClick={() => history.push('/movies/add')}>Add movies</Button>
-          </Toolbar>
-        </AppBar>
-        <div className="route-content">
-          <Switch>
-            {/* exact one of the word which is used to match the path what is correctly in it. */}
-            <Route exact path="/">
-              <Welcome />
-            </Route>
-            <Route path="/films">
-              <Redirect  to="/movies"/>
-            </Route>
-            
-            <Route path="/movies/add">
-            <AddMovie movieList={movieList} setMovieList={setMovieList}/>
-            </Route>
+      <ThemeProvider theme={themeCtx}>
+        <Paper sx={{ borderRadius: "0px", minHeight: "100vh" }}elevation={3} >
+          <div className="App">
+            <AppBar position="static">
+              <Toolbar>
+                <Button color="inherit" onClick={() => history.push('/movies')}>Movies</Button>
+                <Button color="inherit" onClick={() => history.push('/color-game')}>Color game</Button>
+                <Button color="inherit" onClick={() => history.push('/')}>Home</Button>
+                <Button color="inherit" onClick={() => history.push('/movies/add')}>Add movies</Button>
+                
+                <Button color="inherit" onClick={() => setMode(mode ==='light' ? "dark" : "light")}>Light mode</Button>
+              </Toolbar>
+            </AppBar>
+            <div className="route-content">
+              <Switch>
+                {/* exact one of the word which is used to match the path what is correctly in it. */}
+                <Route exact path="/">
+                  <Welcome />
+                </Route>
+                <Route path="/films">
+                  <Redirect  to="/movies"/>
+                </Route>
+                
+                <Route path="/movies/add">
+                <AddMovie movieList={movieList} setMovieList={setMovieList}/>
+                </Route>
 
-            <Route path="/movies/edit/:id">
-            <EditMovie movieList={movieList} setMovieList={setMovieList}/>
-            </Route>
+                <Route path="/movies/edit/:id">
+                <EditMovie movieList={movieList} setMovieList={setMovieList}/>
+                </Route>
 
-            <Route path="/movies/:id">
-              <MovieDetails movieList={movieList}/>
-            </Route>
+                <Route path="/movies/:id">
+                  <MovieDetails movieList={movieList}/>
+                </Route>
 
-            <Route path="/movies">
-              <MovieList movieList={movieList} setMovieList={setMovieList}/>
-            </Route>
-            <Route path="/color-game">
-                <AddColor />
-            </Route>
-            <Route path="**">
-                <NotFound />
-            </Route>
-            {/* <Route path="/">
-              <h2>Welcome to the movie app ❤️🎶🍕🍕🎶💕</h2>
-            </Route> */}
-          </Switch>
-        </div>
-      </div>
+                <Route path="/movies">
+                  <MovieList movieList={movieList} setMovieList={setMovieList}/>
+                </Route>
+                <Route path="/color-game">
+                    <AddColor />
+                </Route>
+                <Route path="**">
+                    <NotFound />
+                </Route>
+                {/* <Route path="/">
+                  <h2>Welcome to the movie app ❤️🎶🍕🍕🎶💕</h2>
+                </Route> */}
+              </Switch>
+            </div>
+          </div>
+        </Paper>
+      </ThemeProvider>
     );
   }
 
