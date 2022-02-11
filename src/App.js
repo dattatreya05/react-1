@@ -3,13 +3,18 @@ import { AddColor } from './AddColor';
 import "./App.css";
 // import {double} from "./ColorBox.js"; // 1. Named exports and imports
 // import { ColorBox } from "./ColorBox.js"; // defalut exports and imports- only one at a time
-import { Switch, Route, Link, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { MovieDetails } from './MovieDetails';
 import { Welcome } from './Welcome.1';
 import { NotFound } from './NotFound';
 import { MovieList } from './MovieList';
 import { AddMovie } from './AddMovie';
 import { EditMovie } from './EditMovie';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import { useHistory } from 'react-router-dom';
+
 
 // console.log(double(10))
 
@@ -118,60 +123,53 @@ export default function App() {
     ];
     const [movieList, setMovieList] = useState(INITIAL_MOVIES);
 
+    const history = useHistory();
     return (
       <div className="App">
-        <ul>
-          {/* <li>
-            <Link to="/movies">Films</Link>
-          </li> */}
-          <li>
-            <Link to="/movies">Movies</Link>
-          </li>
-          <li>
-            <Link to="/color-game">Color game</Link>
-          </li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/movies/add">Add movies</Link>
-          </li>
-        </ul>
+        <AppBar position="static">
+          <Toolbar>
+            <Button color="inherit" onClick={() => history.push('/movies')}>Movies</Button>
+            <Button color="inherit" onClick={() => history.push('/color-game')}>Color game</Button>
+            <Button color="inherit" onClick={() => history.push('/')}>Home</Button>
+            <Button color="inherit" onClick={() => history.push('/movies/add')}>Add movies</Button>
+          </Toolbar>
+        </AppBar>
+        <div className="route-content">
+          <Switch>
+            {/* exact one of the word which is used to match the path what is correctly in it. */}
+            <Route exact path="/">
+              <Welcome />
+            </Route>
+            <Route path="/films">
+              <Redirect  to="/movies"/>
+            </Route>
+            
+            <Route path="/movies/add">
+            <AddMovie movieList={movieList} setMovieList={setMovieList}/>
+            </Route>
 
-        <Switch>
-          {/* exact one of the word which is used to match the path what is correctly in it. */}
-          <Route exact path="/">
-            <Welcome />
-          </Route>
-          <Route path="/films">
-            <Redirect  to="/movies"/>
-          </Route>
-          
-          <Route path="/movies/add">
-           <AddMovie movieList={movieList} setMovieList={setMovieList}/>
-          </Route>
+            <Route path="/movies/edit/:id">
+            <EditMovie movieList={movieList} setMovieList={setMovieList}/>
+            </Route>
 
-          <Route path="/movies/edit/:id">
-          <EditMovie movieList={movieList} setMovieList={setMovieList}/>
-          </Route>
+            <Route path="/movies/:id">
+              <MovieDetails movieList={movieList}/>
+            </Route>
 
-          <Route path="/movies/:id">
-            <MovieDetails movieList={movieList}/>
-          </Route>
-
-          <Route path="/movies">
-            <MovieList movieList={movieList} setMovieList={setMovieList}/>
-          </Route>
-          <Route path="/color-game">
-              <AddColor />
-          </Route>
-          <Route path="**">
-              <NotFound />
-          </Route>
-          {/* <Route path="/">
-            <h2>Welcome to the movie app ❤️🎶🍕🍕🎶💕</h2>
-          </Route> */}
-        </Switch>
+            <Route path="/movies">
+              <MovieList movieList={movieList} setMovieList={setMovieList}/>
+            </Route>
+            <Route path="/color-game">
+                <AddColor />
+            </Route>
+            <Route path="**">
+                <NotFound />
+            </Route>
+            {/* <Route path="/">
+              <h2>Welcome to the movie app ❤️🎶🍕🍕🎶💕</h2>
+            </Route> */}
+          </Switch>
+        </div>
       </div>
     );
   }
