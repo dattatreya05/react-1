@@ -16,6 +16,8 @@ import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 import {  createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 // console.log(double(10))
 
@@ -132,7 +134,7 @@ export default function App() {
     const history = useHistory();
     const themeCtx = createTheme({
       palette: {
-        mode: 'dark',
+        mode: mode,
       },
     });
 
@@ -147,7 +149,14 @@ export default function App() {
                 <Button color="inherit" onClick={() => history.push('/')}>Home</Button>
                 <Button color="inherit" onClick={() => history.push('/movies/add')}>Add movies</Button>
                 
-                <Button color="inherit" onClick={() => setMode(mode ==='light' ? "dark" : "light")}>Light mode</Button>
+                <Button 
+                  style={{ marginLeft: "auto" }}
+                  color="inherit"
+                  startIcon={mode==="dark" ? <Brightness7Icon /> : <Brightness4Icon />} 
+                  onClick={() => setMode(mode ==='light' ? "dark" : "light")}
+                  >
+                  {mode ==='light' ? "dark" : "light"} mode
+                </Button>
               </Toolbar>
             </AppBar>
             <div className="route-content">
