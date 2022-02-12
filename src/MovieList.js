@@ -3,10 +3,28 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
-
-export function MovieList({ movieList, setMovieList }) {
+export function MovieList() {
   
+  const [movieList, setMovieList] = useState([]);
+
+  const getMovies = () => {
+    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies", {method:"GET"})
+      .then((data) => data.json())
+      .then((mvs) => setMovieList(mvs));
+  }
+
+  useEffect(getMovies, []);
+
+
+  // Delete -> Refresh data (getMovies)
+  const deleteMovie = (id) => {
+    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + id, {method:"DELETE"})
+      .then((data) => data.json())
+      .then(() => getMovies());
+  };
+
   const history = useHistory();
   return <section className="movie-list">
     {movieList.map((movie, index) => (
@@ -23,13 +41,16 @@ export function MovieList({ movieList, setMovieList }) {
           // filter
           <IconButton
             style={{marginLeft: "auto"}} 
-            onClick={() => {
-            const remainingMovies = movieList.filter((mv, idx) =>{
-              const removeIdx = index;
-              return idx !== removeIdx; 
-            })
-            setMovieList(remainingMovies) 
-            }} aria-label="delete" color="error">
+            onClick={() => deleteMovie(movie.id)}
+            
+            // instead of writing all these things we are writing only upper deleteMovie one. 
+            // const remainingMovies = movieList.filter((mv, idx) =>{
+            //   const removeIdx = index;
+            //   return idx !== removeIdx; 
+            // })
+            // setMovieList(remainingMovies) 
+            
+            aria-label="delete" color="error">
             <DeleteIcon />
           </IconButton>}
 
