@@ -2,8 +2,9 @@ import { useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
-export function MovieDetails({ movieList }) {
+export function MovieDetails() {
   // const name= "The Avengers";
   // const rating= 8;
   // const summary =
@@ -11,8 +12,20 @@ export function MovieDetails({ movieList }) {
   // const trailer = "https://www.youtube.com/embed/eOrNdBpGMv8"
   // console.log(movieList)
   const { id } = useParams();
-  const movie = movieList[id];
-  console.log(movie);
+  const [movie, setMovie] = useState({});
+
+  const getMovie = () => {
+    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + id, {
+      method:"GET"
+    })
+      .then((data) => data.json())
+      .then((mv) => setMovie(mv));
+  };
+
+  useEffect(getMovie, []); 
+  // it is for to get the particular movie details by clicking the details.
+
+  // console.log(movie);
 
   const history = useHistory();
 

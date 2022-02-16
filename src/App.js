@@ -29,7 +29,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 export default function App() {
 
     
-    const [movieList, setMovieList] = useState([]);
+    // const [movieList, setMovieList] = useState([]);
 
     // useEffect(() => {
     //   fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies")
@@ -77,15 +77,15 @@ export default function App() {
                 </Route>
                 
                 <Route path="/movies/add">
-                <AddMovie movieList={movieList} setMovieList={setMovieList}/>
+                <AddMovie />
                 </Route>
 
                 <Route path="/movies/edit/:id">
-                <EditMovie movieList={movieList} setMovieList={setMovieList}/>
+                <EditMovie />
                 </Route>
 
                 <Route path="/movies/:id">
-                  <MovieDetails movieList={movieList}/>
+                  <MovieDetails />
                 </Route>
 
                 <Route path="/movies">

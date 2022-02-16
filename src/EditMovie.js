@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { useEffect } from 'react';
 import { useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -8,11 +9,27 @@ import { useHistory, useParams } from 'react-router-dom';
 // /movies - new users are using this one.
 // so we have to change the that whenever we are going to films it will automatically redirect to movies by redirect tag.
 // Regex - * - matches anything for getting the things.
-export function EditMovie({ movieList, setMovieList }) {
+export function EditMovie() {
   const { id } = useParams();
-  const movie = movieList[id];
-  console.log(movie)
+  const [movie, setMovie] = useState(null);
 
+  const getMovie = () => {
+    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + id, {
+      method:"GET"
+    })
+      .then((data) => data.json())
+      .then((mv) => setMovie(mv));
+  };
+
+  useEffect(getMovie, []);
+
+  return movie ? <EditMovieForm movie={movie}/> : "";
+  
+}
+
+
+
+function EditMovieForm({movie}){
   const [name, setName] = useState(movie.name);
   const [poster, setPoster] = useState(movie.poster);
   const [rating, setRating] = useState(movie.rating);
@@ -20,6 +37,8 @@ export function EditMovie({ movieList, setMovieList }) {
   const [trailer, setTrailer] = useState(movie.trailer);
 
   const history = useHistory();
+
+
   return (
 
     <div className="add-movie-form">
@@ -40,12 +59,21 @@ export function EditMovie({ movieList, setMovieList }) {
           poster: poster,
           rating: rating,
           summary: summary,
+          trailer: trailer,
         };
         // Replace the updated movie in the movielist
-        const copyMovieList = [...movieList]
-        copyMovieList[id] = updatedMovie;
-        setMovieList(copyMovieList);
-        history.push("/movies");
+        // const copyMovieList = [...movieList]
+        // copyMovieList[id] = updatedMovie;
+        // setMovieList(copyMovieList);
+        // history.push("/movies");
+        fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + movie.id, {
+          method:"PUT",
+          body: JSON.stringify(updatedMovie),
+          headers:{
+            "Content-type": "application/json",
+            }
+        }).then(()=>history.push("/movies"));
+
       }} variant="outlined" color="success" >Save</Button>
 
       {/* create copy of the movielist and add new movie to it. */}
@@ -53,3 +81,11 @@ export function EditMovie({ movieList, setMovieList }) {
   );
 
 }
+
+
+// 1. Method-PUt and pass id
+// 2. body-JSON Data
+// 3. Header - data - Json
+
+
+

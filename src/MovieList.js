@@ -16,7 +16,7 @@ export function MovieList() {
   }
 
   useEffect(getMovies, []);
-
+  // useEffect is loaded only one time when component is called
 
   // Delete -> Refresh data (getMovies)
   const deleteMovie = (id) => {
@@ -34,14 +34,14 @@ export function MovieList() {
         poster={movie.poster}
         rating={movie.rating}
         summary={movie.summary}
-        id={index}
+        id={movie.id}
         deleteButton={
           // Index -> tell which movie to delete
           // remove the clicked from movielist
           // filter
           <IconButton
             style={{marginLeft: "auto"}} 
-            onClick={() => deleteMovie(movie.id)}
+            onClick={() => deleteMovie(movie.id)} // movie.id means it is called becuase when movie deleted it should have know which movie deleted.
             
             // instead of writing all these things we are writing only upper deleteMovie one. 
             // const remainingMovies = movieList.filter((mv, idx) =>{
@@ -59,7 +59,7 @@ export function MovieList() {
             // remove the clicked from movielist
             // filter
             <IconButton onClick={() => 
-              history.push("/movies/edit/" + index)
+              history.push("/movies/edit/" + movie.id) // movie.id is called for getting the id when edit button is clicked.
               } aria-label="edit" color="secondary">
               <EditIcon />
             </IconButton>}

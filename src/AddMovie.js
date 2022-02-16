@@ -36,13 +36,27 @@ export function AddMovie({ movieList, setMovieList }) {
           poster: poster,
           rating: rating,
           summary: summary,
+          trailer: trailer,
         };
-        setMovieList([...movieList, newMovie]);
-        history.push("/movies");
+
+        fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies", {
+          method:"POST",
+          body: JSON.stringify(newMovie),
+          headers:{
+            "Content-type": "application/json",
+          }
+        }).then(()=>history.push("/movies")); // after complteing the post we are calling the movies to show if it not it will leads race condition.
+
+        // setMovieList([...movieList, newMovie]);
+       
       }} variant="outlined">Add Movie</Button>
 
       {/* create copy of the movielist and add new movie to it. */}
     </div>
   );
-
 }
+
+
+// 1. Method-Post
+// 2. body-JSON Data
+// 3. Header - data - Json
