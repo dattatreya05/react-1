@@ -18,6 +18,7 @@ import {  createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { BasicForm } from "./BasicForm";
 // import { useEffect } from "react";
 
 // console.log(double(10))
@@ -94,6 +95,9 @@ export default function App() {
                 <Route path="/color-game">
                     <AddColor />
                 </Route>
+                {/* <Route path="/basic-form">
+                    <BasicForm />
+                </Route> */}
                 <Route path="**">
                     <NotFound />
                 </Route>
