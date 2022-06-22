@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { API } from './global';
 
 export function MovieDetails() {
   // const name= "The Avengers";
@@ -15,7 +16,7 @@ export function MovieDetails() {
   const [movie, setMovie] = useState({});
 
   const getMovie = () => {
-    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + id, {
+    fetch(`${API}/movies/` + id, {
       method:"GET"
     })
       .then((data) => data.json())

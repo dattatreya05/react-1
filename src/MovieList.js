@@ -4,13 +4,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { API } from './global';
 
 export function MovieList() {
   
   const [movieList, setMovieList] = useState([]);
 
   const getMovies = () => {
-    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies", {method:"GET"})
+    fetch(`${API}/movies`, {method:"GET"})
       .then((data) => data.json())
       .then((mvs) => setMovieList(mvs));
   }
@@ -20,7 +21,7 @@ export function MovieList() {
 
   // Delete -> Refresh data (getMovies)
   const deleteMovie = (id) => {
-    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + id, {method:"DELETE"})
+    fetch(`${API}/movies/` + id, {method:"DELETE"})
       .then((data) => data.json())
       .then(() => getMovies());
   };

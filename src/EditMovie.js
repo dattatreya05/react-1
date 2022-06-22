@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { formValidationSchema } from './AddMovie';
+import { API } from './global';
 
 // Redirect tag
 // /films - old user are using this one.
@@ -16,7 +17,7 @@ export function EditMovie() {
   const [movie, setMovie] = useState(null);
 
   const getMovie = () => {
-    fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + id, {
+    fetch(`${API}/movies/` + id, {
       method:"GET"
     })
       .then((data) => data.json())
@@ -44,7 +45,7 @@ function EditMovieForm({movie}){
     validationSchema: formValidationSchema,
     onSubmit: (updatedMovie) => {
       console.log(updatedMovie);
-          fetch("https://619cfba768ebaa001753ce3a.mockapi.io/movies/" + movie.id, {
+          fetch(`${API}/movies/` + movie.id, {
             method:"PUT",
             body: JSON.stringify(updatedMovie),
             headers:{
