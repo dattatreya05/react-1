@@ -30,7 +30,7 @@ export function MovieList() {
   return <section className="movie-list">
     {movieList.map((movie, index) => (
       <Movie
-        key={index}
+        key={movie._id}
         name={movie.name}
         poster={movie.poster}
         rating={movie.rating}
