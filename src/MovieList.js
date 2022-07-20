@@ -42,7 +42,7 @@ export function MovieList() {
           // filter
           <IconButton
             style={{marginLeft: "auto"}} 
-            onClick={() => deleteMovie(movie.id)} // movie.id means it is called becuase when movie deleted it should have know which movie deleted.
+            onClick={() => deleteMovie(movie._id)} // movie.id means it is called becuase when movie deleted it should have know which movie deleted.
             
             // instead of writing all these things we are writing only upper deleteMovie one. 
             // const remainingMovies = movieList.filter((mv, idx) =>{
@@ -60,7 +60,7 @@ export function MovieList() {
             // remove the clicked from movielist
             // filter
             <IconButton onClick={() => 
-              history.push("/movies/edit/" + movie.id) // movie.id is called for getting the id when edit button is clicked.
+              history.push("/movies/edit/" + movie._id) // movie.id is called for getting the id when edit button is clicked.
               } aria-label="edit" color="secondary">
               <EditIcon />
             </IconButton>}
