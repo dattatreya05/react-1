@@ -35,7 +35,7 @@ export function MovieList() {
         poster={movie.poster}
         rating={movie.rating}
         summary={movie.summary}
-        id={movie.id}
+        id={movie._id}
         deleteButton={
           // Index -> tell which movie to delete
           // remove the clicked from movielist
